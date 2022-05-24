@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
+const Inventory = require('./models/inventory.js');
 
 // How to connect to the database either
 // via heroku or locally
@@ -68,14 +69,28 @@ app.use(express.urlencoded({ extended: false }));
         //========================
         //===== Index / GET ==========
         //========================
-
+app.get('/inventory', (req,res) => {
+    res.render('index.ejs');
+});
         //========================
         //===== New / GET ==========
         //========================
+app.get('/inventory/new', (req, res) => {
+    Inventory.find({}, (error, allInventory) => {
+        app.render('new.ejs', {inventory: allInventory});
+    });
+});
 
         //========================
         //===== Show / GET ==========
         //========================
+app.get('/inventory/:_id', (req,res)=>{
+    Inventory.findById(req.params._id, (err, foundInventory) =>{
+        res.render('show.ejs', {
+            inventory: foundInventory,
+        });
+    });
+});
 
         //========================
         //===== Edit / GET===========
@@ -84,7 +99,12 @@ app.use(express.urlencoded({ extended: false }));
         //========================
         //===== Create / POST =======
         //========================
-
+app.post('/inventory', (req,res)=> {
+    Inventory.create(req.body, (error, createdInventory)=> {
+        res.redirect('index.ejs');
+    });
+    console.log(req.body);
+});
         //========================
         //===== Update / PUT ========
         //========================
