@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>| Jackson Hole General Store Inventory |</title>
+</head>
+<body>
+    <header>
+        <h3><strong>Jackson Hole General Store </strong> |   Overview  |</h3>
+        <%- include('./partials/header.ejs') %>
+    </header>
+    <div class="container">
+        <label for="inStock">Product Currently in Stock: </label>
+        <table>
+        <% inventory.forEach(inventory => {%>
+        <% if (inventory.qty >= 1){ %>
+        <tr class="descript">
+            <td>Item Name:</td>
+            <td>Price:</td>
+            <td>Quantity:</td>
+            <td>Description:</td>
+        </tr>
+        <tr class="bringValue">
+            <td><%=inventory.name%></td>
+            <td><%=inventory.price%></td>
+            <td><%=inventory.qty%></td>
+            <td><%=inventory.desc%></td>
+        </tr>
+        <% }}); %>
+        </table>
+        <table>
+
+        </table>
+    </div>
+    <footer>
+        <%- include('./partials/footer.ejs') %>
+    </footer>
+</body>
+</html>

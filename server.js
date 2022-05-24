@@ -70,16 +70,18 @@ app.use(express.urlencoded({ extended: false }));
         //===== Index / GET ==========
         //========================
 app.get('/inventory', (req,res) => {
-    res.render('index.ejs');
+   Inventory.find({}, (error, allInventory) => {
+    res.render('index.ejs',{inventory: allInventory});
 });
+});
+
         //========================
         //===== New / GET ==========
         //========================
 app.get('/inventory/new', (req, res) => {
-    Inventory.find({}, (error, allInventory) => {
-        app.render('new.ejs', {inventory: allInventory});
+        app.render('new.ejs');
+        console.log(req.body);
     });
-});
 
         //========================
         //===== Show / GET ==========
@@ -101,7 +103,7 @@ app.get('/inventory/:_id', (req,res)=>{
         //========================
 app.post('/inventory', (req,res)=> {
     Inventory.create(req.body, (error, createdInventory)=> {
-        res.redirect('index.ejs');
+        res.redirect('/inventory');
     });
     console.log(req.body);
 });
