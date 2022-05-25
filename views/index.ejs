@@ -4,16 +4,19 @@
     <%- include('./partials/head.ejs') %>
     <title>| Jackson Hole General Store Inventory |</title>
 </head>
-<body>
+<body id="index">
     <header>
         <h3><strong>Jackson Hole General Store </strong> |   Overview  |</h3>
         <%- include('./partials/header.ejs') %>
     </header>
     <div class="container">
-        <label for="inStock">Product Currently in Stock: </label>
+        <label for="inStock">Product(s) Currently in Stock: </label>
         <table>
         <% inventory.forEach(inventory => {%>
         <% if (inventory.qty >= 1){ %>
+        <% if (inventory.img !== undefined){ %>
+        <img src="<%=inventory.img%>" /> <br />
+       <% }%>
         <tr class="descript">
             <td>Item Name:</td>
             <td>Price:</td>

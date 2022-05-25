@@ -4,7 +4,7 @@
     <%- include('./partials/head.ejs') %>
     <title>New Item</title>
 </head>
-<body>
+<body id="new">
     <header>
         <h3><strong>Jackson Hole General Store </strong> |  New Item:</h3>
         <%- include('./partials/header.ejs') %>
@@ -19,6 +19,8 @@
             <input type="number" name="qty" id="name" value="1" min="0" />
             <label for="desc">Description: </label>
             <input type="text" name="desc" id="desc" maxlength="200" />
+            <label for="img">Description: </label>
+            <input type="text" name="img" id="img" />
 
              <!-- Submit Button -->
              <!--===========-->

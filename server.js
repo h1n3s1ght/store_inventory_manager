@@ -59,7 +59,7 @@ app.listen(PORT, () => {
 
     // Body parser middleware: it creates req.body
     //================================
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 
 //=============================
@@ -79,7 +79,7 @@ app.get('/inventory', (req,res) => {
         //===== New / GET ==========
         //========================
 app.get('/inventory/new', (req, res) => {
-        app.render('new.ejs');
+        res.render('new.ejs');
         console.log(req.body);
     });
 
