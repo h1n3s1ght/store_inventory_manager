@@ -9,5 +9,23 @@
         <h3><strong>Jackson Hole General Store </strong> |  Edit: <%= inventory.name%>  |</h3>
         <%- include('./partials/header.ejs') %>
     </header>
+    <div class="container">
+        <form>
+         <label for="name">Item Name: </label>
+            <input type="text" required name="name" id="name" value="<%=inventory.name%>" />
+            <label for="price">Item Price: </label>
+            <input type="number" name="price" id="price" min="0" value="<%=inventory.price%>" step=".01" />
+            <label for="qty">Quantity in Stock: </label>
+            <input type="number" name="qty" id="name" value="<%=inventory.qty%>" min="0" />
+            <label for="desc">Description: </label>
+            <input type="text" name="desc" id="desc" maxlength="200" value="<%= inventory.desc%>"/>
+            <label for="img">Image (Link): </label>
+            <input type="text" name="img" id="img" value="<%= inventory.img%>" />
+
+             <!-- Submit Button -->
+             <!--===========-->
+            <input type="submit" name="" value="Update Inventory" />
+        </form>
+    </div>
 </body>
 </html>

@@ -4,11 +4,10 @@
     // Dependencies
     //==========
 const express = require('express');
+const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const app = express();
 require('dotenv').config();
-const mongoose = require('mongoose');
-const Inventory = require('./models/inventory.js');
-const inventoryStart = require('./models/inventoryStart.js');
 
     // How to connect to the database either
     // via heroku or locally
@@ -62,83 +61,9 @@ app.listen(PORT, () => {
     //================================
 app.use(express.urlencoded({ extended: true }));
 
-
-//=============================
-//========= ROUTES ============
-//=============================
-
-        //========================
-        //===== Index / GET ==========
-        //========================
-
-        //Get date from Seed
-        //==============
-app.get('/inventory/seed', (req, res) => {
-	inventoryStart.deleteMany({}, (error, allInventory) => {});
-
-	inventoryStart.create(inventoryStart, (error, data) => {
-		res.redirect('/inventory');
-	});
-});
-
-        //Get data from DB
-        //=============
-app.get('/inventory', (req,res) => {
-   Inventory.find({}, (error, allInventory) => {
-    res.render('index.ejs',{inventory: allInventory});
-});
-});
-
-        //========================
-        //===== New / GET ==========
-        //========================
-app.get('/inventory/new', (req, res) => {
-        res.render('new.ejs');
-        console.log(req.body);
-    });
-
-        //========================
-        //===== Show / GET ==========
-        //========================
-app.get('/inventory/:id', (req,res)=>{
-    Inventory.findById(req.params.id, (err, foundInventory) =>{
-        res.render('show.ejs', {
-            inventory: foundInventory,
-        });
-    });
-});
-
-        //========================
-        //===== Edit / GET===========
-        //========================
-app.get('/inventory/:id/edit', (req, res) => {
-    Inventory.findById(req.params.id, (err, foundInventory) =>{
-          res.render('edit.ejs', {inventory: foundInventory});
-    })
-});
-
-        //========================
-        //===== Create / POST =======
-        //========================
-app.post('/inventory', (req,res)=> {
-    Inventory.create(req.body, (error, createdInventory)=> {
-        res.redirect('/inventory');
-    });
-    console.log(req.body);
-});
-        //========================
-        //===== Update / PUT ========
-        //========================
-app.put('/inventory/:_id', (req, res) => {
-Inventory.findByIdAndUpdate[req.params._id] = req.body;
-res.redirect('/inventory');
-});
-        //=========================
-        //===== Destroy / DELETE ======
-        //=========================
-app.delete('/inventory/:_id', (req, res) => {
-        //Select the item by id and remove only one item
-    Inventory.splice(req.params._id, 1);
-        //Redirect back to home page after delete completes
-    res.redirect('/inventory');
-});
+    //Create router dependency...
+    //MUST STAY AT THE
+    //END OF MIDDLEWARE
+    //=====================
+const inventoryController = require('./controllers/inventoryList.js');
+app.use(inventoryController);
