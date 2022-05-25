@@ -9,5 +9,25 @@
         <h3><strong>Jackson Hole General Store </strong> |  Inspect: <%=inventory.name%>  |</h3>
         <%- include('./partials/header.ejs') %>
     </header>
+    <div class="container">
+        <h3><%=inventory.name%></h3>
+        <% if (inventory.img !== undefined){ %>
+        <br /><img src="<%=inventory.img%>" /> <br />
+       <% }%>
+       <table>
+       <tr class="descript">
+            <td>Price:</td>
+            <td>Quantity:</td>
+            <% if (inventory.desc !== undefined){ %>
+            <td>Description:</td>
+            <% }%>
+       <tr>
+       <td><%=inventory.price%></td>
+            <td><%=inventory.qty%></td>
+            <td><%=inventory.desc%></td>
+            </tr>
+            </table>
+       <button type="submit" name="edit"><a href="/inventory/<%=inventory._id%>/edit">Edit</a></button>
+    </div>
 </body>
 </html>

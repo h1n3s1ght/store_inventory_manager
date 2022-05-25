@@ -97,6 +97,11 @@ app.get('/inventory/:_id', (req,res)=>{
         //========================
         //===== Edit / GET===========
         //========================
+app.get('/inventory/:_id/edit', (req, res) => {
+    Inventory.findById(req.params._id, (err, foundInventory) =>{
+          res.render('edit.ejs', {inventory: Inventory[req.params._id]});
+    })
+});
 
         //========================
         //===== Create / POST =======
@@ -110,7 +115,16 @@ app.post('/inventory', (req,res)=> {
         //========================
         //===== Update / PUT ========
         //========================
-
+app.put('/inventory/:_id', (req, res) => {
+Inventory.findByIdAndUpdate[req.params._id] = req.body;
+res.redirect('/inventory');
+});
         //=========================
         //===== Destroy / DELETE ======
         //=========================
+app.delete('/inventory/:_id', (req, res) => {
+        //Select the item by id and remove only one item
+    Inventory.splice(req.params._id, 1);
+        //Redirect back to home page after delete completes
+    res.redirect('/inventory');
+});

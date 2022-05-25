@@ -12,14 +12,14 @@
     <div class="container">
         <form action="/inventory" method="POST">
             <label for="name">Item Name: </label>
-            <input type="text" name="name" id="name" />
+            <input type="text" required name="name" id="name" />
             <label for="price">Item Price: </label>
             <input type="number" name="price" id="price" min="0" value="0" step=".01" />
             <label for="qty">Quantity in Stock: </label>
             <input type="number" name="qty" id="name" value="1" min="0" />
             <label for="desc">Description: </label>
             <input type="text" name="desc" id="desc" maxlength="200" />
-            <label for="img">Description: </label>
+            <label for="img">Image (Link): </label>
             <input type="text" name="img" id="img" />
 
              <!-- Submit Button -->

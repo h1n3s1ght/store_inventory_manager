@@ -14,26 +14,24 @@
         <table>
         <% inventory.forEach(inventory => {%>
         <% if (inventory.qty >= 1){ %>
-        <% if (inventory.img !== undefined){ %>
-        <img src="<%=inventory.img%>" /> <br />
-       <% }%>
+        <div class="each">
         <tr class="descript">
             <td>Item Name:</td>
             <td>Price:</td>
             <td>Quantity:</td>
+            <% if (inventory.desc !== undefined){ %>
             <td>Description:</td>
+            <% }%>
         </tr>
         <tr class="bringValue">
-            <td><%=inventory.name%></td>
+            <td class="selectI"><a href="/inventory/<%=inventory._id%>"><%=inventory.name%></a></td>
             <td><%=inventory.price%></td>
             <td><%=inventory.qty%></td>
             <td><%=inventory.desc%></td>
         </tr>
         <% }}); %>
         </table>
-        <table>
-
-        </table>
+        </div>
     </div>
     <footer>
         <%- include('./partials/footer.ejs') %>
