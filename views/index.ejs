@@ -20,7 +20,7 @@
     
         </tr>
         <% inventory.forEach(inventory => {%>
-        <% if (inventory.qty >= 1){ %>
+        <% if (parseInt(inventory.qty) >= 1){ %>
         <div class="each">
         <tr class="bringValue">
             <td class="selectI"><a href="/inventory/<%=inventory._id%>"><%=inventory.name%></a></td>

@@ -57,9 +57,13 @@ app.listen(PORT, () => {
 //======= MIDDLEWARE ===========
 //==============================
 
+    //Utilize the Method Override Features
+    //===========================
+app.use(methodOverride("_method"));
+
     // Body parser middleware: it creates req.body
     //================================
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
     //Create router dependency...
     //MUST STAY AT THE

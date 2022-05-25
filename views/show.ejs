@@ -31,8 +31,20 @@
              <%}%>
             </tr>
             </table>
-       <button type="submit" name="edit"><a href="/inventory/<%=inventory._id%>/edit">Edit</a></button>
-        <button type="submit" name="addCart"><a href="/inventory/<%=inventory._id%>/edit">Add to Cart</a></button>
+            <div class="buttons">
+             <!-- Edit Button -->
+             <form action="/inventory/<%=inventory.id%>/edit?_method=GET" method="GET">
+       <input type="submit" name="edit" value="Edit">
+       </form>
+            <!-- Delete Button -->
+       <form action="/inventory/<%= inventory.id%>?_method=DELETE" method="POST">
+       <input type="submit" value="Delete"/> 
+       </form>
+            <!-- Add to Cart Button -->
+            <form>
+        <input type="submit" name="addCart" value="Add to Cart" href="/inventory/<%=inventory._id%>/edit">
+        </form>
+        </div>
     </div>
 </body>
 </html>

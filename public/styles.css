@@ -44,8 +44,8 @@ background-size: 100vw 100vh;
   background-attachment: fixed;
 }
 img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 
 .container {
@@ -178,4 +178,17 @@ input[type="submit"]:hover {
 
 td {
     text-align: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+}
+
+.buttons form {
+    width: 100%;
+     margin: 2.5% 0%;
+     padding: 1%;
 }
