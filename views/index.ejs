@@ -12,22 +12,25 @@
     <div class="container">
         <label for="inStock">Product(s) Currently in Stock: </label>
         <table>
-        <% inventory.forEach(inventory => {%>
-        <% if (inventory.qty >= 1){ %>
-        <div class="each">
         <tr class="descript">
             <td>Item Name:</td>
             <td>Price:</td>
             <td>Quantity:</td>
-            <% if (inventory.desc !== undefined){ %>
             <td>Description:</td>
-            <% }%>
+    
         </tr>
+        <% inventory.forEach(inventory => {%>
+        <% if (inventory.qty >= 1){ %>
+        <div class="each">
         <tr class="bringValue">
             <td class="selectI"><a href="/inventory/<%=inventory._id%>"><%=inventory.name%></a></td>
             <td><%=inventory.price%></td>
             <td><%=inventory.qty%></td>
-            <td><%=inventory.desc%></td>
+            <% if (inventory.desc.length <= 0){ %>
+                <td> N/A </td>
+             <% } else {%>
+             <td><%=inventory.desc%></td>
+             <%}%>
         </tr>
         <% }}); %>
         </table>

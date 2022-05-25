@@ -24,10 +24,15 @@
        <tr>
        <td><%=inventory.price%></td>
             <td><%=inventory.qty%></td>
-            <td><%=inventory.desc%></td>
+           <% if (inventory.desc.length <= 0){ %>
+                <td> N/A </td>
+             <% } else {%>
+             <td><%=inventory.desc%></td>
+             <%}%>
             </tr>
             </table>
        <button type="submit" name="edit"><a href="/inventory/<%=inventory._id%>/edit">Edit</a></button>
+        <button type="submit" name="addCart"><a href="/inventory/<%=inventory._id%>/edit">Add to Cart</a></button>
     </div>
 </body>
 </html>

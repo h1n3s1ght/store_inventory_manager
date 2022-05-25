@@ -8,10 +8,11 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Inventory = require('./models/inventory.js');
+const inventoryStart = require('./models/inventoryStart.js');
 
-// How to connect to the database either
-// via heroku or locally
-//===========================
+    // How to connect to the database either
+    // via heroku or locally
+    //===========================
 const MONGODB_URI = process.env.MONGODB_URI;
 
     //Use Public Directory
@@ -69,6 +70,19 @@ app.use(express.urlencoded({ extended: true }));
         //========================
         //===== Index / GET ==========
         //========================
+
+        //Get date from Seed
+        //==============
+app.get('/inventory/seed', (req, res) => {
+	inventoryStart.deleteMany({}, (error, allInventory) => {});
+
+	inventoryStart.create(inventoryStart, (error, data) => {
+		res.redirect('/inventory');
+	});
+});
+
+        //Get data from DB
+        //=============
 app.get('/inventory', (req,res) => {
    Inventory.find({}, (error, allInventory) => {
     res.render('index.ejs',{inventory: allInventory});
@@ -86,8 +100,8 @@ app.get('/inventory/new', (req, res) => {
         //========================
         //===== Show / GET ==========
         //========================
-app.get('/inventory/:_id', (req,res)=>{
-    Inventory.findById(req.params._id, (err, foundInventory) =>{
+app.get('/inventory/:id', (req,res)=>{
+    Inventory.findById(req.params.id, (err, foundInventory) =>{
         res.render('show.ejs', {
             inventory: foundInventory,
         });
@@ -97,9 +111,9 @@ app.get('/inventory/:_id', (req,res)=>{
         //========================
         //===== Edit / GET===========
         //========================
-app.get('/inventory/:_id/edit', (req, res) => {
-    Inventory.findById(req.params._id, (err, foundInventory) =>{
-          res.render('edit.ejs', {inventory: Inventory[req.params._id]});
+app.get('/inventory/:id/edit', (req, res) => {
+    Inventory.findById(req.params.id, (err, foundInventory) =>{
+          res.render('edit.ejs', {inventory: foundInventory});
     })
 });
 
