@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs')%>
+    <script>
+        function total (a, b){
+            return a * b;
+            console.log(a*b);
+        }
+    </script>
+    <title>Shopping Cart</title>
+  </head>
+  <body id="show">
+    <header>
+      <h3>
+        <strong>Jackson Hole General Store </strong> | Shopping List |
+      </h3>
+      <%- include('./partials/header.ejs') %>
+    </header>
+    <div class="container">
+        <% shopping.forEach(shopping => {%>
+        <% if (parseInt(shopping.qty) >= 1){ %>
+      <h3><%=shopping.name%></h3>
+      <br /><img src="<%=shopping.img%>" /> <br />
+      
+      <table>
+        <tr class="descript">
+          <td>Price:</td>
+          <td>Quantity:</td>
+          <td>Total: </td>
+        </tr>
+
+        <tr>
+          <td><%=shopping.price%></td>
+          <td><%=shopping.qty%></td>
+          <td>
+        <%total(%>
+          <%=shopping.price%>
+          <%,%> 
+          <%=shopping.qty%> 
+          <%)%>
+          </td>
+        </tr>
+      </table>
+      <% }} )%>
+      <div class="buttons">
+        <!-- Edit Button -->
+        <form
+          action="/shopping/<%=shopping.id%>/edit?_method=GET"
+          method="GET"
+        >
+          <input type="submit" name="edit" value="Edit" />
+        </form>
+        <!-- Delete Button -->
+        <form
+          action="/shopping/<%= shopping.id%>?_method=DELETE"
+          method="POST"
+        >
+          <input type="submit" value="Delete" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -48,14 +48,22 @@ img {
     height: 300px;
 }
 
-.container {
+.container{
+    width: 70%;
+    margin-left: 14%;
+}
+
+.container2 {
+    width: 34%;
+    margin-left: 31%;
+}
+
+.container, .container2 {
     display: flex;
     background-color: whitesmoke;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 70%;
-    margin-left: 14%;
      border-radius: 10px;
   box-shadow: 1px 1px 10px #635D5C,
               -1px -1px 10px #635D5C,
@@ -137,6 +145,7 @@ legend {
   font-weight: 500;
   color: black;
 }
+
 label {
   font-family: Futura;
   font-weight: 200;

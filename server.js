@@ -71,3 +71,6 @@ app.use(express.urlencoded({ extended: false }));
     //=====================
 const inventoryController = require('./controllers/inventoryList.js');
 app.use(inventoryController);
+
+const shoppingController = require('./controllers/shoppingList.js');
+app.use(shoppingController);

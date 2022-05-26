@@ -5,8 +5,8 @@
     //==========
 const express = require('express');
 const inventoryRouter = express.Router();
-const Inventory = require('../models/inventory');
-const inventoryStart = require('../models/inventoryStart');
+const Inventory = require('../models/inventory.js');
+const inventoryStart = require('../models/inventoryStart.js');
 
 //=============================
 //========= ROUTES ============
@@ -25,8 +25,11 @@ inventoryRouter.get('/inventory/seed', (req, res) => {
     })
 })
 
-        //Get data from DB
-        //=============
+        //Get data from Database(s)
+        //==================
+
+        //Inventory
+        //=======
 inventoryRouter.get('/inventory', (req,res) => {
    Inventory.find({}, (error, allInventory) => {
     res.render('index.ejs',{inventory: allInventory,});
